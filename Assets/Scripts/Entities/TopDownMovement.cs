@@ -19,7 +19,7 @@ public class TopDownMovement : MonoBehaviour
 
     void Start()
     {
-        _controller.OnMoverEvent += Move;
+        _controller.OnMoveEvent += Move;
     }
 
     // FixedUpdate() = 물리처리가 끝난 이후에 호출

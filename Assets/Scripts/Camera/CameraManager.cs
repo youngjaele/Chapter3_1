@@ -6,12 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     public GameObject _player; // 카메라가 따라갈 대상
     [SerializeField] private float _cameraSpeed; // 카메라의 속도
-    private Vector3 _playerPosition; // 따라갈 대상의 위치
-
-    void Start()
-    {
-        
-    }
+    private Vector3 _playerPosition; // 대상의 위치
 
     void Update()
     {
