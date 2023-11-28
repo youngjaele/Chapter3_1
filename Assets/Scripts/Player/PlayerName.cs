@@ -10,7 +10,7 @@ public class PlayerName : MonoBehaviour
 
     private void Update()
     {
-        Vector3 namePos = Camera.main.WorldToScreenPoint(target.position + Vector3.up * 0.8f);
+        Vector3 namePos = Camera.main.WorldToScreenPoint(target.position + Vector3.up * 0.9f);
         
         playerNameText.rectTransform.position = namePos;
     }

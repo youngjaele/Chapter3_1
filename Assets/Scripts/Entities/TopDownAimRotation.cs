@@ -46,7 +46,13 @@ public class TopDownAimRotation : MonoBehaviour
 
     private void RotateCharacter(Vector2 direction)
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        characterRenderer.flipX = Mathf.Abs(rotZ) > 90f;
+        
+        if (direction.x != 0)
+        {
+            characterRenderer.flipX = direction.x < 0;
+        }
+
+        // float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //characterRenderer.flipX = Mathf.Abs(rotZ) > 90f;
     }
 }
