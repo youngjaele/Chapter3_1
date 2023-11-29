@@ -9,11 +9,6 @@ public class StartCharacterSelectButton : MonoBehaviour
     [SerializeField] protected GameObject imageSelectText;
     [SerializeField] protected GameObject characterImageSelectBox;
 
-    private void Awake()
-    {
-        selectBoxButton.onClick.AddListener(ShowSelectBox);
-    }
-
     public void ShowSelectBox()
     {
         characterImageSelectBox.SetActive(true);

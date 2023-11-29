@@ -14,13 +14,6 @@ public class CharacterSelectMenuMsg : StartCharacterSelectButton
     [SerializeField] private GameObject playerImage1;
     [SerializeField] private GameObject playerImage2;
 
-    private void Awake()
-    {
-        playerImageButton1.onClick.AddListener(CharacterImageInput1);
-        playerImageButton2.onClick.AddListener(CharacterImageInput2);
-        NoneSelectButton.onClick.AddListener(NoneSelectInput);
-    }
-
     public void CharacterImageInput1()
     {
         characterImageSelectBox.SetActive(false);

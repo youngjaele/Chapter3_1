@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerName : MonoBehaviour
+public class PlayerNameCamera : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI playerNameText;
     [SerializeField] private Transform target;

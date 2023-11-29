@@ -6,11 +6,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class InputName : MonoBehaviour
+public class InputPlayerInfo : MonoBehaviour
 {
+    [SerializeField] private Button _loginButton;
     [SerializeField] private TMP_InputField _inputPlayerName;
 
-    public void InputNameAndLoadMainScene()
+    public void SavePlayerInfo()
     {
         if (_inputPlayerName != null)
         {
@@ -20,18 +21,23 @@ public class InputName : MonoBehaviour
             {
 
                 PlayerPrefs.SetString("PlayerName", playerName);
-                PlayerPrefs.Save();
 
-                SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+                SceneManager.LoadScene("MainScene");
             }
+            else
+            {
+                Debug.Log("이름이 짧아"); // 오류 창 띄우기
+            }
+            return;
         }
+
     }
     void Update()
     {
         // 엔터로 입력가능
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            InputNameAndLoadMainScene();
+            SavePlayerInfo();
         }
     }
 }

@@ -15,7 +15,6 @@ public class MainScene : MonoBehaviour
         if (_playerNameText != null)
         {
             _playerNameText.text = playerName;
-        
         }
 
     }
