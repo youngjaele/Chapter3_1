@@ -7,9 +7,10 @@ using UnityEngine;
 public class TopDownMovement : MonoBehaviour
 {
     private TopDownCharacterController _controller;
+    private Rigidbody2D _rigidbody;
 
     private Vector2 _movementDirection = Vector2.zero;
-    private Rigidbody2D _rigidbody;
+   
 
     private void Awake()
     {
@@ -36,7 +37,7 @@ public class TopDownMovement : MonoBehaviour
     // velocity = 가속도를 저장
     private void ApplyMovement(Vector2 direction)
     {
-        direction = direction * 5;
+        direction *= 10;
 
         _rigidbody.velocity = direction;
     }

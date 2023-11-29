@@ -6,14 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : TopDownCharacterController
 {
     private Camera _camera;
-    private PlayerMoveAnimationController _playerMoveAnimationController;
 
-    private float moveInputStop = 0.1f;
-
-    private void Awake()
+       private void Awake()
     {
         _camera = Camera.main;
-        _playerMoveAnimationController = GetComponent<PlayerMoveAnimationController>();
     }
 
     // normalized : Vector의 값을 1로 잘라줌
@@ -22,11 +18,6 @@ public class PlayerInputController : TopDownCharacterController
     {
         Vector2 moveInput = value.Get<Vector2>().normalized;
         CallMoveEvent(moveInput);
-
-        if (_playerMoveAnimationController != null)
-        {
-            _playerMoveAnimationController.MoveAnimation(moveInput.magnitude > moveInputStop);
-        }
     }
 
     public void OnLook(InputValue value)
@@ -35,7 +26,7 @@ public class PlayerInputController : TopDownCharacterController
         Vector2 worldPos = _camera.ScreenToWorldPoint(newAim);
         newAim = (worldPos - (Vector2)transform.position).normalized;
 
-        if (newAim.magnitude >= .9f)
+        if (newAim.magnitude >= 0f)
         {
             CallLookEvent(newAim);
         }

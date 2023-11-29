@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class PlayerMoveAnimationController : MonoBehaviour
 {
-    private Animator _animator;
+    PlayerInputController controller;
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        controller = GetComponent<PlayerInputController>();
     }
 
-    public void MoveAnimation(bool isMoving)
+    void Start()
     {
-        if (_animator != null)
-        {
-            _animator.SetBool("isMove", isMoving);
-        }
-        else
-        {
-            _animator.SetBool("isMove", false);
-        }
+        controller.OnMoveEvent += MoveAnimation;
+    }
+    void MoveAnimation(Vector2 dir)
+    {
+        animator.SetBool("isMove", dir.magnitude > 0f);
+
     }
 }
