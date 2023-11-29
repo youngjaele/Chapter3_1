@@ -15,8 +15,5 @@ public class PlayerName : MonoBehaviour
         playerNameText.rectTransform.position = namePos;
     }
 
-    private void SetPlayerName(string playerName)
-    {
-        playerNameText.text = playerName;
-    }
+
 }
