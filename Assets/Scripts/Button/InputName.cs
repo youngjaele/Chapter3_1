@@ -25,15 +25,10 @@ public class InputName : MonoBehaviour
                 SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
             }
         }
-        else
-        {
-            Debug.LogError("_inputPlayerName is null!");
-        }
-
     }
     void Update()
     {
-        // 엔터 키를 누르면 InputNameAndLoadMainScene() 호출
+        // 엔터로 입력가능
         if (Input.GetKeyDown(KeyCode.Return))
         {
             InputNameAndLoadMainScene();
