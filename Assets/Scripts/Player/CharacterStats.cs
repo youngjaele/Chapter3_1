@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public enum StatsChangeType
     Override,
 }
 
+[Serializable]
 public class CharacterStats
 {
     public StatsChangeType statChangeType;

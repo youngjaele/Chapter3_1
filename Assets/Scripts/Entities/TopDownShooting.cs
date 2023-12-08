@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class TopDownShooting : MonoBehaviour
 {
+    private ProjectileManager _projectileManager;
     private TopDownCharacterController _controller;
 
     [SerializeField] private Transform projectileSpawnPosition;
     private Vector2 _aimDirection = Vector2.right;
 
-    public GameObject bullet;
 
     private void Awake()
     {
@@ -19,6 +19,9 @@ public class TopDownShooting : MonoBehaviour
 
     void Start()
     {
+        // ProjectileManager의 싱글톤에 접근
+        _projectileManager = ProjectileManager.instance;
+        
         _controller.OnAttackEvent += OnShoot;
         _controller.OnLookEvent += OnAim;
     }
@@ -28,17 +31,34 @@ public class TopDownShooting : MonoBehaviour
         _aimDirection = newAimDirection;
     }
 
-    private void OnShoot()
+    private void OnShoot(AttackSO attackSO)
     {
-        CreateProjectile();
+        RangedAttackData rangedAttackData = attackSO as RangedAttackData;
+        float projectilesAngleSpace = rangedAttackData.multipleProjectilesAngel;
+        int numberOfProjectilesPerShot = rangedAttackData.numberofprojectilesPerShot;
+
+        float minAngle = -(numberOfProjectilesPerShot / 2f) * projectilesAngleSpace + 0.5f * rangedAttackData.multipleProjectilesAngel;
+
+        for (int i = 0; i < numberOfProjectilesPerShot; i++)
+        {
+            float angle = minAngle + projectilesAngleSpace * i;
+            float randomSpread = Random.Range(-rangedAttackData.spread, rangedAttackData.spread);
+            angle += randomSpread;
+
+            CreateProjectile(rangedAttackData, angle);
+        }
     }
 
-    private void CreateProjectile()
+    // _projectileManager에게 공격(Bullet) 생성요청
+    private void CreateProjectile(RangedAttackData rangedAttackData, float angle)
     {
-        Instantiate(bullet, projectileSpawnPosition.position, Quaternion.identity);
+        _projectileManager.ShootBullet(projectileSpawnPosition.position,
+            RotateVector2(_aimDirection,angle), rangedAttackData);
     }
-    void Update()
+
+    // Quaternion * Vector = Vector 각도 회전 강의자료
+    private static Vector2 RotateVector2(Vector2 v, float degree)
     {
-        
+        return Quaternion.Euler(0, 0, degree) * v;
     }
 }
