@@ -39,7 +39,7 @@ public class TopDownMovement : MonoBehaviour
     // velocity = 가속도를 저장
     private void ApplyMovement(Vector2 direction)
     {
-        direction = direction * _stats.CurrentStates.speed;
+        direction = direction * _stats.CurrentStats.speed;
 
         _rigidbody.velocity = direction;
     }

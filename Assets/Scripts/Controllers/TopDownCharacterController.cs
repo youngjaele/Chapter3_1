@@ -42,17 +42,17 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void HandleAttackDelay()
     {
-        if (_stats.CurrentStates.attackSO == null)
+        if (_stats.CurrentStats.attackSO == null)
             return;
 
-        if (_timeSinceLastAttack <= _stats.CurrentStates.attackSO.dealy)
+        if (_timeSinceLastAttack <= _stats.CurrentStats.attackSO.dealy)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
-        if (IsAttacking && _timeSinceLastAttack > _stats.CurrentStates.attackSO.dealy)
+        if (IsAttacking && _timeSinceLastAttack > _stats.CurrentStats.attackSO.dealy)
         { 
             _timeSinceLastAttack = 0;
-            CallAttackEvent(_stats.CurrentStates.attackSO);
+            CallAttackEvent(_stats.CurrentStats.attackSO);
         }
     }
 }

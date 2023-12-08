@@ -13,7 +13,7 @@ public enum StatsChangeType
 [Serializable]
 public class CharacterStats
 {
-    public StatsChangeType statChangeType;
+    public StatsChangeType statsChangeType;
     
     [Range(0, 100)]public int maxHealthl;
     [Range(1f, 20f)] public float speed;
