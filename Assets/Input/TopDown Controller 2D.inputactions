@@ -24,13 +24,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shot",
-                    "type": "Button",
+                    "name": "Fire",
+                    "type": "Value",
                     "id": "94de56e3-6b7d-4fb2-bbeb-334426df61a9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -162,7 +162,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Shot",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
