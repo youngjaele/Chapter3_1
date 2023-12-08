@@ -8,7 +8,11 @@ public class ProjectileManager : MonoBehaviour
     public static ProjectileManager instance;
 
     [SerializeField] private ParticleSystem _impactParticleSystyem;
-    [SerializeField] private GameObject testObj;
+    private ObjectPool objectPool;
+
+    // 테스트용 총알 주석
+    // [SerializeField] private GameObject testObj; 
+
 
     private void Awake()
     {
@@ -17,14 +21,16 @@ public class ProjectileManager : MonoBehaviour
 
     void Start()
     {
-        
+        objectPool = GetComponent<ObjectPool>();
     }
 
     // TopDownShooting에서의 CreateProjectile()함수 요청을 받아와서 Obj (불릿) 생성
     // RangedAttackController(투사체 컨트롤러)를 통해서 생성한 불릿 초기화 진행
     public void ShootBullet(Vector2 startPostion, Vector2 directionm, RangedAttackData attackData)
     {
-        GameObject obj = Instantiate(testObj); // 불링 생성
+        // GameObject obj = Instantiate(testObj); 일반적인 불링 생성 
+        // 오브젝트 풀링을 사용한 불릿 생성 ( 정해진 갯수를 미리 생산 파괴 시 재사용 )
+        GameObject obj = objectPool.SpawnFromPool(attackData.bulletNameTag);
 
         obj.transform.position = startPostion;
         // 생성한 불릿 초기화 진행

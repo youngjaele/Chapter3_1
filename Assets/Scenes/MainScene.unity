@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361572629}
   - component: {fileID: 361572630}
+  - component: {fileID: 361572631}
   m_Layer: 0
   m_Name: ProjectileManager
   m_TagString: Untagged
@@ -380,7 +381,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _impactParticleSystyem: {fileID: 0}
-  testObj: {fileID: 9069367776841202578, guid: 276a01f725f6e6e488d61f0e5d4df9f3, type: 3}
+--- !u!114 &361572631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361572628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf8bff77d745314d8bd216a34af6558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Bullet
+    prefab: {fileID: 9069367776841202578, guid: 276a01f725f6e6e488d61f0e5d4df9f3, type: 3}
+    size: 20
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +459,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11572,8 +11588,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
