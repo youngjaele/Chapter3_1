@@ -15,7 +15,7 @@ public class CharacterStats
 {
     public StatsChangeType statsChangeType;
     
-    [Range(0, 100)]public int maxHealthl;
+    [Range(0, 100)]public int maxHealth;
     [Range(1f, 20f)] public float speed;
 
     // 공격 데이터
