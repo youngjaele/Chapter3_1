@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6236212567101093015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 151850585972622830}
   - component: {fileID: 3864445922608452811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3610423424251773816}
   - component: {fileID: 2920135323461784226}
   - component: {fileID: 2392948125241255269}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,8 @@ GameObject:
   - component: {fileID: 514556827040803692}
   - component: {fileID: 7353043197017839963}
   - component: {fileID: 2276334935906882081}
-  m_Layer: 0
+  - component: {fileID: -7580102483945231663}
+  m_Layer: 6
   m_Name: OrcShaman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 2
-    maxHealth: 0
+    maxHealth: 7
     speed: 2
     attackSO: {fileID: 11400000, guid: 9a0fac489edb07b4eb472bdef4e4609c, type: 2}
   statsModifiers: []
@@ -432,6 +433,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
+--- !u!114 &-7580102483945231663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864329717747819183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d359a27d94fabb49b11ae7e34c0b5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7559293785021134955
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8129474019979824140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

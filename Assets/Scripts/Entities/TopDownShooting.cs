@@ -11,6 +11,7 @@ public class TopDownShooting : MonoBehaviour
     [SerializeField] private Transform projectileSpawnPosition;
     private Vector2 _aimDirection = Vector2.right;
 
+    public AudioClip shootingClip;
 
     private void Awake()
     {
@@ -54,6 +55,8 @@ public class TopDownShooting : MonoBehaviour
     {
         _projectileManager.ShootBullet(projectileSpawnPosition.position,
             RotateVector2(_aimDirection,angle), rangedAttackData);
+        if (shootingClip)
+            SoundManager.PlayClip(shootingClip);
     }
 
     // Quaternion * Vector = Vector 각도 회전 강의자료

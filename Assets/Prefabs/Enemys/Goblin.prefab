@@ -16,7 +16,9 @@ GameObject:
   - component: {fileID: 5680283496260535835}
   - component: {fileID: 8194118516583416472}
   - component: {fileID: 8325290490621468384}
-  m_Layer: 0
+  - component: {fileID: 3736324384027227728}
+  - component: {fileID: -257398278067247436}
+  m_Layer: 6
   m_Name: Goblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 2
-    maxHealth: 0
+    maxHealth: 5
     speed: 2
     attackSO: {fileID: 11400000, guid: 6490b0131f5bcfd419a823b7bae59568, type: 2}
   statsModifiers: []
@@ -181,6 +183,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
+--- !u!114 &3736324384027227728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031704508568917909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d359a27d94fabb49b11ae7e34c0b5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &-257398278067247436
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031704508568917909}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!1 &7374421350519003396
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +241,7 @@ GameObject:
   - component: {fileID: 126958055754295082}
   - component: {fileID: 8877029560282412614}
   - component: {fileID: 4729070722871672274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

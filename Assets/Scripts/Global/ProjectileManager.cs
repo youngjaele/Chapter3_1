@@ -7,7 +7,7 @@ public class ProjectileManager : MonoBehaviour
     // 싱글톤
     public static ProjectileManager instance;
 
-    [SerializeField] private ParticleSystem _impactParticleSystyem;
+    [SerializeField] private ParticleSystem _impactParticleSystem;
     private ObjectPool objectPool;
 
     // 테스트용 총알 주석
@@ -38,5 +38,15 @@ public class ProjectileManager : MonoBehaviour
         attackController.InitializeAttack(directionm, attackData, this);
         
         obj.SetActive(true); // 재사용을 위해 SetActive
+    }
+
+    public void CreateImpactParticlesAtPosition(Vector3 position, RangedAttackData attackData)
+    {
+        _impactParticleSystem.transform.position = position;
+        ParticleSystem.EmissionModule em = _impactParticleSystem.emission;
+        em.SetBurst(0, new ParticleSystem.Burst(0, Mathf.Ceil(attackData.size * 5)));
+        ParticleSystem.MainModule mainModule = _impactParticleSystem.main;
+        mainModule.startSpeedMultiplier = attackData.size * 10f;
+        _impactParticleSystem.Play();
     }
 }

@@ -73,7 +73,7 @@ public class RangedAttackController : MonoBehaviour
     {
         if (createFx)
         {
-
+            _projectileManager.CreateImpactParticlesAtPosition(position, _attackData);
         }
         gameObject.SetActive(false);
     }
@@ -82,7 +82,7 @@ public class RangedAttackController : MonoBehaviour
     {
         if (levelCollisionLayer.value == (levelCollisionLayer.value | (1 << collision.gameObject.layer)))
         {
-            DestroyProjectile(collision.ClosestPoint(transform.position) - _direction * 2f, fxOnDestory);
+            DestroyProjectile(collision.ClosestPoint(transform.position) - _direction * .2f, fxOnDestory);
         }
         else if (_attackData.target.value == (_attackData.target.value | (1 << collision.gameObject.layer)))
         {
@@ -93,6 +93,7 @@ public class RangedAttackController : MonoBehaviour
                 if(_attackData.isOnKnockback)
                 {
                     TopDownMovement movement = collision.GetComponent<TopDownMovement>();
+                    
                     if(movement != null)
                     {
                         movement.ApplyKnockback(transform, _attackData.knockbackPower, _attackData.knockbackTime);
