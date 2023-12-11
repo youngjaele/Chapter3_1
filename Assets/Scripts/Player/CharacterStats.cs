@@ -17,6 +17,7 @@ public class CharacterStats
     
     [Range(0, 100)]public int maxHealth;
     [Range(1f, 20f)] public float speed;
+    [Range(0, 10000000)] public int money;
 
     // 공격 데이터
     public AttackSO attackSO;

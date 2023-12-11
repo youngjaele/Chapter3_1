@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private Slider hpGaugeSlider;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject bankUI;
 
     [SerializeField] private int currentWaveIndex = 0;
     private int currentSpawnCount = 0;
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
         playerHealthSystem.OnDeath += GameOver;
 
         gameOverUI.SetActive(false);
+        bankUI.SetActive(false);
+        
 
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)
         {
@@ -153,7 +156,7 @@ public class GameManager : MonoBehaviour
         Instantiate(obj, spawnPositions[posIdx].position, Quaternion.identity);
     }
 
-    void UpgradeStatInit()
+    private void UpgradeStatInit()
     {
         defaultStats.statsChangeType = StatsChangeType.Add;
         defaultStats.attackSO = Instantiate(defaultStats.attackSO);
@@ -162,7 +165,7 @@ public class GameManager : MonoBehaviour
         rangedStats.attackSO = Instantiate(rangedStats.attackSO);
     }
 
-    void RandomUpgrade()
+    private void RandomUpgrade()
     {
         switch (Random.Range(0, 6))
         {
@@ -196,5 +199,16 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    // Bank
+    private void OnTriggerEnter2D(Collider2D player)
+    {
+        ShowBankUI();
+    }
+
+    private void ShowBankUI()
+    {
+        bankUI.SetActive(true);
     }
 }
