@@ -11,17 +11,12 @@ public class MainScene : MonoBehaviour
 
     void Start()
     {
-        string playerName = PlayerPrefs.GetString("PlayerName", "DefaultName");
+        CharacterStats characterStats = PlayerManager.instance.currentplayer;
+
         if (_playerNameText != null)
         {
-            _playerNameText.text = playerName;
+            _playerNameText.text = characterStats.characterName;
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

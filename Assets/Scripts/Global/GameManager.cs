@@ -202,13 +202,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Bank
-    private void OnTriggerEnter2D(Collider2D player)
-    {
-        ShowBankUI();
-    }
-
-    private void ShowBankUI()
+    public void ShowBankUI()
     {
         bankUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Save()
+    {
+        PlayerManager.instance.SavePlayerData();
     }
 }

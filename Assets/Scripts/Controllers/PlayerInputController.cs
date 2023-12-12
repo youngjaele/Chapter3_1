@@ -37,5 +37,4 @@ public class PlayerInputController : TopDownCharacterController
     {
         IsAttacking = value.isPressed;
     }
-
 }

@@ -18,6 +18,8 @@ public class CharacterStatsHandler : MonoBehaviour
     private const int MinMaxHealth = 5;
 
     [SerializeField] private CharacterStats baseStats;
+    [SerializeField] private GameObject characterName;
+    
     public CharacterStats CurrentStats { get; private set; }
     public List<CharacterStats> statsModifiers = new List<CharacterStats>();
 

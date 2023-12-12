@@ -1,25 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BankManager : MonoBehaviour
 {
     public static BankManager instance;
+    private CharacterStats characterStats;
 
     // BankUI Menu Button
+    [SerializeField] private GameObject bankUI;
     [SerializeField] private GameObject SelectMenu;
     [SerializeField] private GameObject depositMoney;
     [SerializeField] private GameObject withdrawMoney;
 
     // BankUI Menu PlayerName DepositedMoney 
     [SerializeField] private TextMeshProUGUI playerName;
-    [SerializeField] private TextMeshProUGUI depositedMoney;
-    [SerializeField] private TextMeshProUGUI currentMoney;
+    [SerializeField] private TextMeshProUGUI depositedMoneyText;
+    [SerializeField] private TextMeshProUGUI currentMoneyText;
+
+    private int currentMoney;
+    private int depositedMoney;
+
+    public event Action<int> OnWorkBank;
+
+    private void Start()
+    {
+        OnWorkBank += DepositButton;
+    }
 
     private void Awake()
     {
         instance = this;
+        currentMoney = InventoryManager.instance.currentMoney;
+        depositedMoney = 100000;
 
         // Get Player Name
         string savePlayerName = PlayerPrefs.GetString("PlayerName", "");
@@ -32,28 +48,27 @@ public class BankManager : MonoBehaviour
         {
             Debug.Log("플레이어 이름이 없어!");
         }
-        
-        if(InventoryManager.instance != null)
+
+        if (InventoryManager.instance != null)
         {
             UpdateCurrentMoney();
         }
         else
         {
             Debug.Log("인벤토리 매니저가 없어");
-        }
-        
+        }   
     }
 
-    private void Update()
+    public void ExitBank()
     {
- 
+        bankUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void UpdateCurrentMoney()
     {
-        int _currentMoney = InventoryManager.instance.GetMoney();
-
-        currentMoney.text = string.Format("{0:N0}", _currentMoney);
+        currentMoneyText.text = string.Format("{0:N0}", currentMoney);
+        depositedMoneyText.text = string.Format("{0:N0}", depositedMoney);
     }
 
     public void ShowDepositMenu() // 입금 메뉴
@@ -75,22 +90,18 @@ public class BankManager : MonoBehaviour
         withdrawMoney.SetActive(false);
     }
 
-    public void DepositButton()
+    public void DepositButton(int money)
     {
-        // 입금 버튼 1, 3, 5 ,직접
+        OnWorkBank?.Invoke(money);
+        currentMoney -= money;
+        depositedMoney += money;
+        Debug.Log("DepositButton Called with money: " + money);
     }
 
-    public void WithdrawButton()
+    public void WithdrawButton(int money)
     {
-        // 출금 버튼 1, 3, 5 ,직접
-    }
-
-    public void DepositMoney(int money)
-    {
-        // 입금 함수
-    }
-    public void WithdrawMoney(int money)
-    {
-        // 출금 함수
+        OnWorkBank?.Invoke(-money);
+        currentMoney += money;
+        depositedMoney -= money;
     }
 }

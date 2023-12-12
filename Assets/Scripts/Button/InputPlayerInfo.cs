@@ -1,43 +1,96 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class InputPlayerInfo : MonoBehaviour
 {
-    [SerializeField] private Button _loginButton;
-    [SerializeField] private TMP_InputField _inputPlayerName;
+    [SerializeField] private GameObject playerSelectUI;
+    [SerializeField] private TextMeshProUGUI[] slotTextUI;
+    [SerializeField] private GameObject inputPlayerNameUI;
+    [SerializeField] private TMP_InputField inputPlayerName;
 
-    public void SavePlayerInfo()
+    bool[] saveFile = new bool[3];
+
+    private void Start()
     {
-        if (_inputPlayerName != null)
+        for (int i = 0; i < saveFile.Length; i++)
         {
-            string playerName = _inputPlayerName.text;
+            if (File.Exists(PlayerManager.instance.filePath + $"{i}"))
+            {
+                saveFile[i] = true;
+                PlayerManager.instance.slotNumber = i;
+                PlayerManager.instance.LoadPlayerData();
+                slotTextUI[i].text = PlayerManager.instance.currentplayer.characterName;
+            }
+            else
+            {
+                slotTextUI[i].text = "빈 슬롯";
+            }
+        }
+    }
+
+    public void SlotData(int number)
+    {
+        PlayerManager.instance.slotNumber = number;
+
+        if (saveFile[number])
+        {
+            GameStart();
+        }
+        else if (!saveFile[number])
+        {
+            InputPlayerName();
+            print($"현재 슬롯 {number}");
+        }
+    }
+
+    public void InputPlayerName()
+    {
+        playerSelectUI.SetActive(false);
+        inputPlayerNameUI.SetActive(true);
+
+        int currentSlot = PlayerManager.instance.slotNumber;
+
+        Debug.Log($"1.5슬롯은 {currentSlot}");
+
+        if (inputPlayerName != null)
+        {
+            string playerName = inputPlayerName.text;
 
             if (0 < playerName.Length && playerName.Length <= 6)
             {
-
-                PlayerPrefs.SetString("PlayerName", playerName);
-
-                SceneManager.LoadScene("MainScene");
+                PlayerManager.instance.currentplayer.characterName = playerName;
+                Debug.Log($"이름이 입력되었어 {playerName}");
+                Debug.Log($"2슬롯은 {PlayerManager.instance.slotNumber}");
+                PlayerManager.instance.SavePlayerData();
+                GameStart();
             }
             else
             {
                 Debug.Log("이름이 짧아"); // 오류 창 띄우기
             }
-            return;
         }
+    }
 
-    }
-    void Update()
+    public void GameStart()
     {
-        // 엔터로 입력가능
-        if (Input.GetKeyDown(KeyCode.Return))
+        Debug.Log($"게임내부 슬롯은 {PlayerManager.instance.slotNumber}");
+        if (!saveFile[PlayerManager.instance.slotNumber])
         {
-            SavePlayerInfo();
+            PlayerManager.instance.currentplayer.characterName = inputPlayerName.text;
+            PlayerManager.instance.SavePlayerData();
         }
+        PlayerManager.instance.LoadPlayerData();
+        SceneManager.LoadScene("MainScene");
     }
+
+    //void Update()
+    //{
+    //    // 엔터로 입력가능
+    //    if (Input.GetKeyDown(KeyCode.Return))
+    //    {
+    //        SavePlayerInfo();
+    //    }
+    //}
 }

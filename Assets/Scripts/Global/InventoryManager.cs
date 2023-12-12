@@ -9,12 +9,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     private CharacterStats characterStats;
-    int currentMoney;
-
-    void Start()
-    {
-        
-    }
+    public int currentMoney;
 
     private void Awake()
     {
