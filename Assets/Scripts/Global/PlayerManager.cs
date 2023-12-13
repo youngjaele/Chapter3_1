@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
 
         filePath = Application.persistentDataPath + "/save/";
         print(filePath);
+
     }
 
     public void SavePlayerData()

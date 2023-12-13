@@ -36,6 +36,7 @@ public class InputPlayerInfo : MonoBehaviour
 
         if (saveFile[number])
         {
+            PlayerManager.instance.LoadPlayerData();
             GameStart();
         }
         else if (!saveFile[number])
@@ -63,7 +64,6 @@ public class InputPlayerInfo : MonoBehaviour
                 PlayerManager.instance.currentplayer.characterName = playerName;
                 Debug.Log($"이름이 입력되었어 {playerName}");
                 Debug.Log($"2슬롯은 {PlayerManager.instance.slotNumber}");
-                PlayerManager.instance.SavePlayerData();
                 GameStart();
             }
             else
@@ -84,13 +84,12 @@ public class InputPlayerInfo : MonoBehaviour
         PlayerManager.instance.LoadPlayerData();
         SceneManager.LoadScene("MainScene");
     }
-
-    //void Update()
-    //{
-    //    // 엔터로 입력가능
-    //    if (Input.GetKeyDown(KeyCode.Return))
-    //    {
-    //        SavePlayerInfo();
-    //    }
-    //}
 }
+//void Update()
+//{
+//    // 엔터로 입력가능
+//    if (Input.GetKeyDown(KeyCode.Return))
+//    {
+//        SavePlayerInfo();
+//    }
+//}

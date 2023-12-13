@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &16656706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -890,7 +890,6 @@ RectTransform:
   - {fileID: 1514170542}
   - {fileID: 1533732320}
   - {fileID: 377954627}
-  - {fileID: 530867692}
   - {fileID: 1982491718}
   m_Father: {fileID: 658173985}
   m_RootOrder: -1
@@ -1441,7 +1440,7 @@ Transform:
   - {fileID: 361572629}
   - {fileID: 2036727489}
   - {fileID: 2045546686}
-  - {fileID: 1517883346}
+  - {fileID: 906720079}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1479,6 +1478,7 @@ MonoBehaviour:
     characterName: 
     level: 1
     money: 0
+    bankMoney: 0
     maxHealth: 0
     speed: 0
     attackSO: {fileID: 11400000, guid: ed01ee3049ab7574c904b7c5bf5fbad4, type: 2}
@@ -1487,6 +1487,7 @@ MonoBehaviour:
     characterName: 
     level: 1
     money: 0
+    bankMoney: 0
     maxHealth: 0
     speed: 0
     attackSO: {fileID: 11400000, guid: 367dfdf1c61d43747bc6c6013da8bc6a, type: 2}
@@ -1636,7 +1637,7 @@ GameObject:
   - component: {fileID: 345403051}
   - component: {fileID: 345403050}
   m_Layer: 5
-  m_Name: DepositedMoney
+  m_Name: CurrentBankMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6658,6 +6659,7 @@ GameObject:
   - component: {fileID: 355333067}
   - component: {fileID: 355333066}
   - component: {fileID: 355333065}
+  - component: {fileID: 355333068}
   m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -6678,6 +6680,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1927050305}
+  - {fileID: 822127206}
   m_Father: {fileID: 1995620778}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6822,6 +6825,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355333063}
   m_CullTransparentMesh: 1
+--- !u!114 &355333068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355333063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471c6af490e8c7d46a75030057d1b8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bankUI: {fileID: 0}
+  SelectMenu: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
+  playerName: {fileID: 1550780850}
+  currentBankMoneyText: {fileID: 802990661}
+  currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 355333065}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &361572628
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +6921,7 @@ GameObject:
   - component: {fileID: 377954630}
   - component: {fileID: 377954629}
   - component: {fileID: 377954628}
+  - component: {fileID: 377954631}
   m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -6916,6 +6941,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 530867692}
   - {fileID: 707822291}
   m_Father: {fileID: 95664847}
   m_RootOrder: -1
@@ -7061,6 +7087,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377954626}
   m_CullTransparentMesh: 1
+--- !u!114 &377954631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377954626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471c6af490e8c7d46a75030057d1b8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bankUI: {fileID: 0}
+  SelectMenu: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
+  playerName: {fileID: 1550780850}
+  currentBankMoneyText: {fileID: 802990661}
+  currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 377954628}
 --- !u!1 &401040687
 GameObject:
   m_ObjectHideFlags: 0
@@ -7287,11 +7334,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 0}
   SelectMenu: {fileID: 0}
-  depositMoney: {fileID: 0}
-  withdrawMoney: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
   playerName: {fileID: 1550780850}
-  depositedMoneyText: {fileID: 802990661}
+  currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7431,12 +7480,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 61089130}
-  m_Father: {fileID: 95664847}
+  m_Father: {fileID: 377954627}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195, y: -130}
+  m_AnchoredPosition: {x: 250.00023, y: -0.000026643276}
   m_SizeDelta: {x: 130, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530867693
@@ -7482,7 +7531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 530867694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 377954631}
+        m_TargetAssemblyTypeName: BankManager, Assembly-CSharp
+        m_MethodName: WithdrawButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &530867694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12415,6 +12476,7 @@ MonoBehaviour:
     characterName: 
     level: 1
     money: 0
+    bankMoney: 0
     maxHealth: 50
     speed: 10
     attackSO: {fileID: 11400000, guid: 37b285733826b744ca1e0a0d520998b3, type: 2}
@@ -16020,7 +16082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -40}
+  m_AnchoredPosition: {x: 10.000004, y: -40}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785203615
@@ -16131,11 +16193,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 0}
   SelectMenu: {fileID: 0}
-  depositMoney: {fileID: 0}
-  withdrawMoney: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
   playerName: {fileID: 1550780850}
-  depositedMoneyText: {fileID: 802990661}
+  currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &802990659
 GameObject:
   m_ObjectHideFlags: 0
@@ -16437,12 +16501,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 732271023}
-  m_Father: {fileID: 1995620778}
+  m_Father: {fileID: 355333064}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195, y: -130}
+  m_AnchoredPosition: {x: 250.00023, y: -0.000030517578}
   m_SizeDelta: {x: 130, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822127207
@@ -16488,7 +16552,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 822127208}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 355333068}
+        m_TargetAssemblyTypeName: BankManager, Assembly-CSharp
+        m_MethodName: DepositButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &822127208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21073,11 +21149,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 0}
   SelectMenu: {fileID: 0}
-  depositMoney: {fileID: 0}
-  withdrawMoney: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
   playerName: {fileID: 1550780850}
-  depositedMoneyText: {fileID: 802990661}
+  currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &905336273
 GameObject:
   m_ObjectHideFlags: 0
@@ -21168,6 +21246,50 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &906720078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906720079}
+  - component: {fileID: 906720080}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &906720079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906720078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 270725616}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &906720080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906720078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf98be120b99d64eb547d8b3aafe5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &923350139
 GameObject:
   m_ObjectHideFlags: 0
@@ -21686,11 +21808,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 0}
   SelectMenu: {fileID: 0}
-  depositMoney: {fileID: 0}
-  withdrawMoney: {fileID: 0}
-  playerName: {fileID: 0}
-  depositedMoneyText: {fileID: 0}
-  currentMoneyText: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
+  playerName: {fileID: 1550780850}
+  currentBankMoneyText: {fileID: 802990661}
+  currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &1149421506
 GameObject:
   m_ObjectHideFlags: 0
@@ -22614,56 +22738,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 0}
   SelectMenu: {fileID: 0}
-  depositMoney: {fileID: 0}
-  withdrawMoney: {fileID: 0}
-  playerName: {fileID: 0}
-  depositedMoneyText: {fileID: 0}
-  currentMoneyText: {fileID: 0}
---- !u!1 &1517883345
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1517883346}
-  - component: {fileID: 1517883347}
-  m_Layer: 0
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1517883346
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517883345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 270725616}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1517883347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517883345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf98be120b99d64eb547d8b3aafe5be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMoney: 0
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
+  playerName: {fileID: 1550780850}
+  currentBankMoneyText: {fileID: 802990661}
+  currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &1533732319
 GameObject:
   m_ObjectHideFlags: 0
@@ -22813,11 +22894,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 0}
   SelectMenu: {fileID: 0}
-  depositMoney: {fileID: 0}
-  withdrawMoney: {fileID: 0}
-  playerName: {fileID: 0}
-  depositedMoneyText: {fileID: 0}
-  currentMoneyText: {fileID: 0}
+  moneyDeposit: {fileID: 0}
+  moneyWithdraw: {fileID: 0}
+  playerName: {fileID: 1550780850}
+  currentBankMoneyText: {fileID: 802990661}
+  currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!1 &1541874708
 GameObject:
   m_ObjectHideFlags: 0
@@ -24381,7 +24464,7 @@ GameObject:
   - component: {fileID: 1955093774}
   - component: {fileID: 1955093773}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BankMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24920,7 +25003,6 @@ RectTransform:
   - {fileID: 486889937}
   - {fileID: 785203614}
   - {fileID: 355333064}
-  - {fileID: 822127206}
   - {fileID: 2105485278}
   m_Father: {fileID: 658173985}
   m_RootOrder: -1
@@ -30136,7 +30218,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d9b2c6e1a8b2eac44be49b9edd64f027, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -30356,11 +30438,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bankUI: {fileID: 16656705}
   SelectMenu: {fileID: 78469834}
-  depositMoney: {fileID: 1995620777}
-  withdrawMoney: {fileID: 95664846}
+  moneyDeposit: {fileID: 1995620777}
+  moneyWithdraw: {fileID: 95664846}
   playerName: {fileID: 1550780850}
-  depositedMoneyText: {fileID: 802990661}
+  currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
+  inputDepositMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 0}
 --- !u!4 &2045546686
 Transform:
   m_ObjectHideFlags: 0

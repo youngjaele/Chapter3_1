@@ -17,7 +17,9 @@ public class CharacterStats
 
     public string characterName;
     public int level = 1;
-    public int money = 50000;
+
+    [Range(0, 10000000)] public int money;
+    [Range(0, 100000000)] public int bankMoney;
 
     [Range(0, 100)] public int maxHealth = 100;
     [Range(1f, 20f)] public float speed = 10f;

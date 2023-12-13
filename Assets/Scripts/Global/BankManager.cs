@@ -8,37 +8,37 @@ using UnityEngine;
 public class BankManager : MonoBehaviour
 {
     public static BankManager instance;
-    private CharacterStats characterStats;
+    public static int currentMoney;
+    public static int currentBankMoney;
 
     // BankUI Menu Button
     [SerializeField] private GameObject bankUI;
     [SerializeField] private GameObject SelectMenu;
-    [SerializeField] private GameObject depositMoney;
-    [SerializeField] private GameObject withdrawMoney;
+    [SerializeField] private GameObject moneyDeposit;
+    [SerializeField] private GameObject moneyWithdraw;
 
     // BankUI Menu PlayerName DepositedMoney 
     [SerializeField] private TextMeshProUGUI playerName;
-    [SerializeField] private TextMeshProUGUI depositedMoneyText;
+    [SerializeField] private TextMeshProUGUI currentBankMoneyText;
     [SerializeField] private TextMeshProUGUI currentMoneyText;
 
-    private int currentMoney;
-    private int depositedMoney;
+    [SerializeField] private TMP_InputField inputDepositMoney;
+    [SerializeField] private TMP_InputField inputWithdrawMoney;
 
-    public event Action<int> OnWorkBank;
 
-    private void Start()
-    {
-        OnWorkBank += DepositButton;
-    }
 
     private void Awake()
     {
         instance = this;
-        currentMoney = InventoryManager.instance.currentMoney;
-        depositedMoney = 100000;
+
+        UpdateCurrentMoney();
+
+        CharacterStats characterStats = PlayerManager.instance.currentplayer;
+        currentMoney = InventoryManager.instance.playerCurrentMoney;
+        currentBankMoney = InventoryManager.instance.playerCurrentBankMoney;
 
         // Get Player Name
-        string savePlayerName = PlayerPrefs.GetString("PlayerName", "");
+        string savePlayerName = characterStats.characterName;
 
         if (!string.IsNullOrEmpty(savePlayerName))
         {
@@ -48,15 +48,6 @@ public class BankManager : MonoBehaviour
         {
             Debug.Log("ÇÃ·¹ÀÌ¾î ÀÌ¸§ÀÌ ¾ø¾î!");
         }
-
-        if (InventoryManager.instance != null)
-        {
-            UpdateCurrentMoney();
-        }
-        else
-        {
-            Debug.Log("ÀÎº¥Åä¸® ¸Å´ÏÀú°¡ ¾ø¾î");
-        }   
     }
 
     public void ExitBank()
@@ -68,40 +59,74 @@ public class BankManager : MonoBehaviour
     private void UpdateCurrentMoney()
     {
         currentMoneyText.text = string.Format("{0:N0}", currentMoney);
-        depositedMoneyText.text = string.Format("{0:N0}", depositedMoney);
+        currentBankMoneyText.text = string.Format("{0:N0}", currentBankMoney);
     }
 
     public void ShowDepositMenu() // ÀÔ±Ý ¸Þ´º
     {
         SelectMenu.SetActive(false);
-        depositMoney.SetActive(true);
+        moneyDeposit.SetActive(true);
+        Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
     }
 
     public void ShowWithdrawMenu() // Ãâ±Ý ¸Þ´º
     {
         SelectMenu.SetActive(false);
-        withdrawMoney.SetActive(true);
+        moneyWithdraw.SetActive(true);
+        Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
     }
 
     public void BackMenu() // µÚ·Î °¡±â
     {
         SelectMenu.SetActive(true);
-        depositMoney.SetActive(false);
-        withdrawMoney.SetActive(false);
+        moneyDeposit.SetActive(false);
+        moneyWithdraw.SetActive(false);
+        Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
     }
 
-    public void DepositButton(int money)
+    public void DepositButton(int moneydeposit)
     {
-        OnWorkBank?.Invoke(money);
-        currentMoney -= money;
-        depositedMoney += money;
-        Debug.Log("DepositButton Called with money: " + money);
+        int inputMoney = 0;
+        if (currentMoney >= moneydeposit && moneydeposit > 0)
+        {
+            currentMoney -= moneydeposit;
+            currentBankMoney += moneydeposit;
+            Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
+            UpdateCurrentMoney();
+        }
+        else if (int.TryParse(inputDepositMoney.text, out inputMoney) && currentMoney > inputMoney)
+        {
+            currentMoney -= inputMoney;
+            currentBankMoney += inputMoney;
+            UpdateCurrentMoney();
+        }
+        else
+        {
+            Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
+            Debug.Log("µ· ¾ø¾î");
+        }
     }
 
-    public void WithdrawButton(int money)
+    public void WithdrawButton(int moneywithdraw)
     {
-        OnWorkBank?.Invoke(-money);
-        currentMoney += money;
-        depositedMoney -= money;
+        int inputMoney = 0;
+        if (currentBankMoney >= moneywithdraw && moneywithdraw > 0 )
+        {
+            currentBankMoney -= moneywithdraw;
+            currentMoney += moneywithdraw;
+            Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
+            UpdateCurrentMoney();
+        }
+        else if (int.TryParse(inputWithdrawMoney.text, out inputMoney) && currentBankMoney > inputMoney)
+        {
+            currentMoney += inputMoney;
+            currentBankMoney -= inputMoney;
+            UpdateCurrentMoney();
+        }
+        else
+        {
+            Debug.Log($"ÇöÀç µ·{currentMoney}, ÀºÇàµ·{currentBankMoney}");
+            Debug.Log("µ· ¾ø¾î");
+        }
     }
 }
