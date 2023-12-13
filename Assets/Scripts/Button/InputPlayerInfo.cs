@@ -14,7 +14,7 @@ public class InputPlayerInfo : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < saveFile.Length; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (File.Exists(PlayerManager.instance.filePath + $"{i}"))
             {
@@ -39,7 +39,7 @@ public class InputPlayerInfo : MonoBehaviour
             PlayerManager.instance.LoadPlayerData();
             GameStart();
         }
-        else if (!saveFile[number])
+        else
         {
             InputPlayerName();
             print($"현재 슬롯 {number}");
@@ -48,8 +48,8 @@ public class InputPlayerInfo : MonoBehaviour
 
     public void InputPlayerName()
     {
-        playerSelectUI.SetActive(false);
-        inputPlayerNameUI.SetActive(true);
+        playerSelectUI.gameObject.SetActive(false);
+        inputPlayerNameUI.gameObject.SetActive(true);
 
         int currentSlot = PlayerManager.instance.slotNumber;
 
@@ -61,9 +61,9 @@ public class InputPlayerInfo : MonoBehaviour
 
             if (0 < playerName.Length && playerName.Length <= 6)
             {
-                PlayerManager.instance.SavePlayerData();
                 PlayerManager.instance.currentplayer.characterName = playerName;
                 Debug.Log($"이름이 입력되었어 {playerName}");
+                PlayerManager.instance.SavePlayerData();
                 Debug.Log($"2슬롯은 {PlayerManager.instance.slotNumber}");
                 GameStart();
             }
@@ -76,17 +76,12 @@ public class InputPlayerInfo : MonoBehaviour
 
     public void GameStart()
     {
+        int selectedSlot = PlayerManager.instance.slotNumber;
         Debug.Log($"게임내부 슬롯은 {PlayerManager.instance.slotNumber}");
-        if (!saveFile[PlayerManager.instance.slotNumber])
-        {
-            PlayerManager.instance.currentplayer.characterName = inputPlayerName.text;
-            PlayerManager.instance.SavePlayerData();
-        }
-        else
-        {
-            PlayerManager.instance.LoadPlayerData();
-            SceneManager.LoadScene("MainScene");
-        }
+       
+        PlayerManager.instance.LoadPlayerData();
+        PlayerManager.instance.slotNumber = selectedSlot;
+        SceneManager.LoadScene("MainScene");
     }
 }
 //void Update()

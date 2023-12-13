@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using TMPro;
-using UnityEditor.Experimental.RestService;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -36,12 +34,19 @@ public class PlayerManager : MonoBehaviour
     {
         string jsonData = JsonUtility.ToJson(currentplayer);
         File.WriteAllText(filePath + slotNumber.ToString(), jsonData);
+        Debug.Log($"Save ½½·Ô ³Ñ¹ö´Â {slotNumber}");
     }
 
     public void LoadPlayerData()
     {
         string jsonData = File.ReadAllText(filePath + slotNumber.ToString());
         currentplayer = JsonUtility.FromJson<CharacterStats>(jsonData);
+        Debug.Log($"Load ½½·Ô ³Ñ¹ö´Â {slotNumber}");
+    }
+
+    public void Clear()
+    {
+        currentplayer = new CharacterStats();
     }
 }
 
