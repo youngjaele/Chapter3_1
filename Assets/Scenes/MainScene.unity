@@ -7339,7 +7339,7 @@ MonoBehaviour:
   playerName: {fileID: 1550780850}
   currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
-  inputDepositMoney: {fileID: 0}
+  inputDepositMoney: {fileID: 355333065}
   inputWithdrawMoney: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
@@ -16198,7 +16198,7 @@ MonoBehaviour:
   playerName: {fileID: 1550780850}
   currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
-  inputDepositMoney: {fileID: 0}
+  inputDepositMoney: {fileID: 355333065}
   inputWithdrawMoney: {fileID: 0}
 --- !u!1 &802990659
 GameObject:
@@ -21154,7 +21154,7 @@ MonoBehaviour:
   playerName: {fileID: 1550780850}
   currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
-  inputDepositMoney: {fileID: 0}
+  inputDepositMoney: {fileID: 355333065}
   inputWithdrawMoney: {fileID: 0}
 --- !u!1 &905336273
 GameObject:
@@ -21814,7 +21814,7 @@ MonoBehaviour:
   currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
   inputDepositMoney: {fileID: 0}
-  inputWithdrawMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 377954628}
 --- !u!1 &1149421506
 GameObject:
   m_ObjectHideFlags: 0
@@ -22744,7 +22744,7 @@ MonoBehaviour:
   currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
   inputDepositMoney: {fileID: 0}
-  inputWithdrawMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 377954628}
 --- !u!1 &1533732319
 GameObject:
   m_ObjectHideFlags: 0
@@ -22900,7 +22900,7 @@ MonoBehaviour:
   currentBankMoneyText: {fileID: 802990661}
   currentMoneyText: {fileID: 923350141}
   inputDepositMoney: {fileID: 0}
-  inputWithdrawMoney: {fileID: 0}
+  inputWithdrawMoney: {fileID: 377954628}
 --- !u!1 &1541874708
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,6 +61,7 @@ public class InputPlayerInfo : MonoBehaviour
 
             if (0 < playerName.Length && playerName.Length <= 6)
             {
+                PlayerManager.instance.SavePlayerData();
                 PlayerManager.instance.currentplayer.characterName = playerName;
                 Debug.Log($"이름이 입력되었어 {playerName}");
                 Debug.Log($"2슬롯은 {PlayerManager.instance.slotNumber}");
@@ -81,8 +82,11 @@ public class InputPlayerInfo : MonoBehaviour
             PlayerManager.instance.currentplayer.characterName = inputPlayerName.text;
             PlayerManager.instance.SavePlayerData();
         }
-        PlayerManager.instance.LoadPlayerData();
-        SceneManager.LoadScene("MainScene");
+        else
+        {
+            PlayerManager.instance.LoadPlayerData();
+            SceneManager.LoadScene("MainScene");
+        }
     }
 }
 //void Update()
