@@ -25,7 +25,37 @@ public class BankManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputDepositMoney;
     [SerializeField] private TMP_InputField inputWithdrawMoney;
 
+    TMP_InputField inputField;
 
+    private void Start()
+    {
+        inputField = GetComponent<TMP_InputField>();
+        if (inputField != null)
+        {
+            inputField.onValueChanged.AddListener(OnInputValue);
+        }
+    }
+
+    private void OnInputValue(string newValue)
+    {
+        string filter = NumberFilter(newValue);
+
+        inputField.text = filter;
+    }
+
+    string NumberFilter(string input)
+    {
+        string result = "";
+
+        foreach (char c in input)
+        {
+            if (char.IsDigit(c))
+            {
+                result += c;
+            }
+        }
+        return result;
+    }
 
     private void Awake()
     {
