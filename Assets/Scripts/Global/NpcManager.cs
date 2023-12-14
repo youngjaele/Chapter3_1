@@ -8,6 +8,8 @@ public class NpcManager : MonoBehaviour
     [SerializeField] private GameObject testNpc;
     [SerializeField] private Canvas npcChat;
 
+    [SerializeField] private GameObject bankUI;
+
     private bool playerInRange;
 
     private void Start()
@@ -17,9 +19,9 @@ public class NpcManager : MonoBehaviour
 
     private void Update()
     {
-        if(bankNpc && playerInRange && Input.GetKeyDown(KeyCode.X))
+        if (bankNpc && playerInRange && Input.GetKeyDown(KeyCode.X))
         {
-            BankManager.instance.ShowBankUI();
+            ShowBankUI();
         }
     }
 
@@ -42,5 +44,11 @@ public class NpcManager : MonoBehaviour
 
             npcChat.gameObject.SetActive(false);
         }
+    }
+
+    public void ShowBankUI()
+    {
+        bankUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

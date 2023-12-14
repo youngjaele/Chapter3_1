@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb11ff18c5337a468f3cca73c936f30, type: 3}
   m_Name: UserData_user1
   m_EditorClassIdentifier: 
+  userId: 
+  userName: 
+  level: 1
+  exp: 0
+  description: "8\uC870 \uD300\uC6D0"
   cash: 100000
   balance: 50000
+  atk: 10
+  def: 5
+  hp: 100
+  cri: 20
