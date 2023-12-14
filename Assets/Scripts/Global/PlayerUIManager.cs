@@ -15,7 +15,6 @@ public class PlayerUIManager : MonoBehaviour
                 GameObject pui = new GameObject("PlayerUIManager");
                 pui.AddComponent<PlayerUIManager>();
                 instance = pui.GetComponent<PlayerUIManager>();
-                DontDestroyOnLoad(pui);
             }
             return instance;
         }
@@ -31,7 +30,6 @@ public class PlayerUIManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
