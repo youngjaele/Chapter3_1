@@ -34,13 +34,9 @@ public class ItemSlot : MonoBehaviour
 
     public void Popup()
     {
-        if(inputData != null)
+        if (inputData != null)
         {
             popupEquip.PopupSetting(this);
-        }
-        else if (popupEquip == null)
-        {
-            popupEquip.PopupError(this);
         }
     }
 }

@@ -9,10 +9,11 @@ public class PopupEquip : MonoBehaviour
     public Button confirmBtn;
 
     [SerializeField] private GameObject popupEquip;
-    [SerializeField] private GameObject popupError;
 
     public void PopupSetting(ItemSlot slot)
     {
+        popupEquip.SetActive(true);
+
         if (slot.inputData.isEquiped)
         {
             infoText.text = "장착을 해제하시겠습니까 ?";
@@ -36,9 +37,5 @@ public class PopupEquip : MonoBehaviour
                 popupEquip.SetActive(false);
             });
         }
-    }
-    public void PopupError(ItemSlot slot)
-    {
-        popupError.SetActive(true);
     }
 }
