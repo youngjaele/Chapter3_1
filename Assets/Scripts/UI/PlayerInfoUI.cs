@@ -30,7 +30,7 @@ public class PlayerInfoUI : MonoBehaviour
 
     public void Refresh()
     {
-        cashTxtUI.text = FormatNumber(PlayerUIManager.instance.userData.cash);
+        cashTxtUI.text = FormatNumber(PlayerUIManager.instance.userData.balance);
         playerLevel.text = PlayerUIManager.instance.userData.level.ToString();
     }
 
