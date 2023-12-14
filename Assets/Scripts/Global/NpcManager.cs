@@ -5,8 +5,8 @@ using UnityEngine;
 public class NpcManager : MonoBehaviour
 {
     [SerializeField] private GameObject bankNpc;
+    [SerializeField] private GameObject testNpc;
     [SerializeField] private Canvas npcChat;
-    [SerializeField] private GameManager gameManager;
 
     private bool playerInRange;
 
@@ -19,7 +19,7 @@ public class NpcManager : MonoBehaviour
     {
         if(bankNpc && playerInRange && Input.GetKeyDown(KeyCode.X))
         {
-            gameManager.ShowBankUI();
+            BankManager.instance.ShowBankUI();
         }
     }
 

@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private Slider hpGaugeSlider;
     [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject bankUI;
 
     [SerializeField] private int currentWaveIndex = 0;
     private int currentSpawnCount = 0;
@@ -45,9 +44,7 @@ public class GameManager : MonoBehaviour
         playerHealthSystem.OnDeath += GameOver;
 
         gameOverUI.SetActive(false);
-        bankUI.SetActive(false);
         
-
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)
         {
             spawnPositions.Add(spawnPositionsRoot.GetChild(i));
@@ -200,14 +197,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    // Bank
-    public void ShowBankUI()
-    {
-        bankUI.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
     public void Save()
     {
         PlayerManager.instance.SavePlayerData();
