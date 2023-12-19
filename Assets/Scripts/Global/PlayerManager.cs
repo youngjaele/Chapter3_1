@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     public CharacterStats currentplayer = new CharacterStats();
 
     public string filePath;
-    public int slotNumber;
+    public int slotNumber; 
 
     private void Awake()
     {
@@ -37,16 +37,19 @@ public class PlayerManager : MonoBehaviour
         Debug.Log($"Save ½½·Ô ³Ñ¹ö´Â {slotNumber}");
     }
 
-    public void LoadPlayerData()
+    public void LoadPlayerData(int number)
     {
-        string jsonData = File.ReadAllText(filePath + slotNumber.ToString());
+        number = slotNumber;
+        string jsonData = File.ReadAllText(filePath + number.ToString());
         currentplayer = JsonUtility.FromJson<CharacterStats>(jsonData);
         Debug.Log($"Load ½½·Ô ³Ñ¹ö´Â {slotNumber}");
     }
 
-    public void Clear()
+    public void DataClear()
     {
+        slotNumber = -1;
         currentplayer = new CharacterStats();
     }
 }
 
+ 

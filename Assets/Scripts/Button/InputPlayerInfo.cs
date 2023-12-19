@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.IO;
+using Unity.VisualScripting;
 
 public class InputPlayerInfo : MonoBehaviour
 {
@@ -14,13 +15,15 @@ public class InputPlayerInfo : MonoBehaviour
 
     private void Start()
     {
+        PlayerManager.instance.slotNumber = 0;
+
         for (int i = 0; i < 3; i++)
         {
             if (File.Exists(PlayerManager.instance.filePath + $"{i}"))
             {
                 saveFile[i] = true;
                 PlayerManager.instance.slotNumber = i;
-                PlayerManager.instance.LoadPlayerData();
+                PlayerManager.instance.LoadPlayerData(i);
                 slotTextUI[i].text = PlayerManager.instance.currentplayer.characterName;
             }
             else
@@ -29,31 +32,26 @@ public class InputPlayerInfo : MonoBehaviour
             }
         }
     }
-
     public void SlotData(int number)
     {
+        
         PlayerManager.instance.slotNumber = number;
 
         if (saveFile[number])
         {
-            PlayerManager.instance.LoadPlayerData();
-            GameStart();
+            GameStart(number);
         }
         else
         {
-            InputPlayerName();
+            InputPlayerName(number);
             print($"현재 슬롯 {number}");
         }
     }
 
-    public void InputPlayerName()
+    public void InputPlayerName(int number)
     {
         playerSelectUI.gameObject.SetActive(false);
         inputPlayerNameUI.gameObject.SetActive(true);
-
-        int currentSlot = PlayerManager.instance.slotNumber;
-
-        Debug.Log($"1.5슬롯은 {currentSlot}");
 
         if (inputPlayerName != null)
         {
@@ -63,9 +61,9 @@ public class InputPlayerInfo : MonoBehaviour
             {
                 PlayerManager.instance.currentplayer.characterName = playerName;
                 Debug.Log($"이름이 입력되었어 {playerName}");
-                PlayerManager.instance.SavePlayerData();
                 Debug.Log($"2슬롯은 {PlayerManager.instance.slotNumber}");
-                GameStart();
+                PlayerManager.instance.SavePlayerData();
+                GameStart(number);
             }
             else
             {
@@ -74,14 +72,13 @@ public class InputPlayerInfo : MonoBehaviour
         }
     }
 
-    public void GameStart()
+    public void GameStart(int number)
     {
-        int selectedSlot = PlayerManager.instance.slotNumber;
-        Debug.Log($"게임내부 슬롯은 {PlayerManager.instance.slotNumber}");
-       
-        PlayerManager.instance.LoadPlayerData();
-        PlayerManager.instance.slotNumber = selectedSlot;
+        PlayerManager.instance.LoadPlayerData(number);
         SceneManager.LoadScene("MainScene");
+        int selectedSlot = PlayerManager.instance.slotNumber;
+        PlayerManager.instance.slotNumber = selectedSlot;
+        Debug.Log($"게임내부 슬롯은 {PlayerManager.instance.slotNumber}");
     }
 }
 //void Update()
